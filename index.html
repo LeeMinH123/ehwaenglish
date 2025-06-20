@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>이화입시영어클리닉</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; background: #f9f9f9; }
+    header { background: #002147; color: white; padding: 20px; text-align: center; }
+    nav { background: #004080; padding: 10px; text-align: center; }
+    nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; cursor: pointer; }
+    main { padding: 20px; display: none; }
+    section { margin-bottom: 30px; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.05); }
+    h2 { color: #002147; }
+    footer { background: #eee; padding: 20px; text-align: center; font-size: 0.9em; }
+    ul { padding-left: 20px; }
+    .quiz-container { margin-top: 20px; }
+    .quiz-question { font-weight: bold; margin-bottom: 10px; }
+    .quiz-option { display: block; margin: 5px 0; }
+    .quiz-feedback { margin-top: 10px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>이화입시영어클리닉</h1>
+    <p>중고등 대상 GPT기반 학습형 영어 홈페이지</p>
+  </header>
+  <nav>
+    <a onclick="openSection('vocab')">단어학습</a>
+    <a onclick="openSection('grammar')">구문연습</a>
+    <a onclick="openSection('text')">교과서독해</a>
+    <a onclick="openSection('mock')">모의고사</a>
+    <a onclick="openSection('listening')">듣기평가</a>
+    <a onclick="openSection('notice')">공지사항</a>
+  </nav>
+  <main id="content">
+    <section id="vocab">
+      <h2>📘 단어학습</h2>
+      <p>수능/내신 필수 어휘를 게임처럼 반복 학습하며 실력을 쌓을 수 있습니다.</p>
+      <ul>
+        <li>고1 필수단어 퀴즈 (뜻 고르기, 빈칸 채우기)</li>
+        <li>고2 수능특강 단어 연습 (예문 포함)</li>
+        <li>주제별 어휘 테스트 (과학/인문/환경 등)</li>
+        <li>틀린 단어 자동 저장 → 오답노트 확인 가능</li>
+      </ul>
+
+      <div class="quiz-container">
+        <div class="quiz-question" id="question">1. 'benefit'의 뜻은?</div>
+        <button class="quiz-option" onclick="checkAnswer(this, false)">방해하다</button>
+        <button class="quiz-option" onclick="checkAnswer(this, true)">이익, 혜택</button>
+        <button class="quiz-option" onclick="checkAnswer(this, false)">공격하다</button>
+        <button class="quiz-option" onclick="checkAnswer(this, false)">거절하다</button>
+        <div class="quiz-feedback" id="feedback"></div>
+      </div>
+    </section>
+    <section id="grammar">
+      <h2>📗 구문연습</h2>
+      <p>문장 구조 분석을 통해 독해 실력을 빠르게 향상시킵니다.</p>
+      <ul>
+        <li>5형식/준동사/관계사절 등 유형별 문장 제공</li>
+        <li>문장 해석 연습 + 선택형/서술형 문제 제공</li>
+        <li>학생별 약한 구문 자동 추천 학습</li>
+        <li>GPT 해설 기능: 문장 해석 및 구문 설명</li>
+      </ul>
+    </section>
+    <section id="text">
+      <h2>📙 교과서 독해</h2>
+      <p>실제 내신 교과서를 기반으로 문단 구조를 파악하고 논리력 향상 훈련을 합니다.</p>
+      <ul>
+        <li>천재/비상/능률 교과서 주요 지문 수록</li>
+        <li>빈칸추론 / 문장삽입 / 어휘 문제 포함</li>
+        <li>문단 요약 및 논리흐름 정리</li>
+        <li>GPT 해석 및 구조 분석 확인 가능</li>
+      </ul>
+    </section>
+    <section id="mock">
+      <h2>📕 모의고사 훈련</h2>
+      <p>실제 평가원/교육청 기출 문제를 기반으로 시간 제한 훈련과 구조 독해 훈련을 할 수 있습니다.</p>
+      <ul>
+        <li>실전모드: 30분 타이머 + 실전 연습</li>
+        <li>구조모드: 해석과 문장 구조 분석 중심 훈련</li>
+        <li>오답 자동 저장 + 해설 제공</li>
+        <li>매달 업데이트되는 최신 기출 포함</li>
+      </ul>
+    </section>
+    <section id="listening">
+      <h2>🎧 듣기평가</h2>
+      <p>수능 및 학교 영어 듣기평가를 반복해서 들으며 실전 감각을 익힐 수 있습니다.</p>
+      <ul>
+        <li>수능 듣기 1~17번 문제 MP3 + Script 제공</li>
+        <li>전국 고등학교 기출 듣기 연습</li>
+        <li>문제별 자동 채점 및 해설 제공</li>
+        <li>반복 청취 / 속도 조절 기능</li>
+      </ul>
+    </section>
+    <section id="notice">
+      <h2>📢 공지사항</h2>
+      <p>학사일정, 과제 공지, 상담 예약 등 중요 공지사항을 확인할 수 있습니다.</p>
+      <ul>
+        <li>기말고사 대비 특강 안내 (7월 초 개강)</li>
+        <li>모의고사 응시 일정 공지</li>
+        <li>상담예약 링크 오픈 (1:1 상담 가능)</li>
+      </ul>
+    </section>
+  </main>
+  <footer>
+    &copy; 2025 이화입시영어클리닉 | 김해시 삼계동 | 010-XXXX-XXXX
+  </footer>
+
+  <script>
+    function checkAnswer(button, isCorrect) {
+      const feedback = document.getElementById("feedback");
+      if (isCorrect) {
+        feedback.textContent = "정답입니다! 🎉";
+        feedback.style.color = "green";
+      } else {
+        feedback.textContent = "틀렸습니다. 다시 시도해 보세요.";
+        feedback.style.color = "red";
+      }
+    }
+
+    function openSection(sectionId) {
+      const sections = document.querySelectorAll("main section");
+      document.querySelector("main").style.display = "block";
+      sections.forEach(sec => sec.style.display = "none");
+      const target = document.getElementById(sectionId);
+      if (target) {
+        target.style.display = "block";
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    window.onload = () => {
+      openSection('vocab'); // 첫 로딩 시 단어학습 보여줌
+    }
+  </script>
+</body>
+</html>
